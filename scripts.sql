@@ -56,7 +56,7 @@ create table Subjects
 );
 
 create table Marks
-(
+(гр
     student_id int,
     subject_id int,
     mark       char not null,
@@ -68,7 +68,7 @@ create table Marks
     foreign key (subject_id) references Subjects (id)
 );
 
-create table TRANSACTIONS_RELOAD_JOBS_TAB
+create table RELOAD_JOBS_TAB
 (
     ID                    NUMBER(20)                  not null
         primary key,
@@ -83,7 +83,7 @@ create table TRANSACTIONS_RELOAD_JOBS_TAB
     MESSAGE_ID            NUMBER(20)      not null
 );
 
-create table TRANSACTIONS_RELOAD_JOBS_DATE_TAB
+create table RELOAD_JOBS_DATE_TAB
 (
     ID                    NUMBER(20)                  not null
         primary key,
@@ -92,7 +92,7 @@ create table TRANSACTIONS_RELOAD_JOBS_DATE_TAB
     TRANSACTIONS_RELOAD_ID       NUMBER(20)          not null
 );
 
-create table TRANSACTIONS_RELOAD_JOBS_ID_TAB
+create table RELOAD_JOBS_ID_TAB
 (
     ID                    NUMBER(20)                  not null
         primary key,
@@ -100,7 +100,7 @@ create table TRANSACTIONS_RELOAD_JOBS_ID_TAB
     TRANSACTIONS_RELOAD_ID       NUMBER(20)          not null
 );
 
-create table TRANSACTIONS_RELOAD_MESSAGE_TAB
+create table RELOAD_MESSAGE_TAB
 (
     ID                    VARCHAR(20)                  not null
         primary key,
