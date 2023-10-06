@@ -1,6 +1,6 @@
 create table if not exists `groups`
 (
-    id   int,
+    id   int AUTO_INCREMENT,
     name char(6) not null,
 
     primary key (id)
@@ -8,7 +8,7 @@ create table if not exists `groups`
 
 create table if not exists Persons
 (
-    id         int,
+    id         int AUTO_INCREMENT,
     first_name varchar(30) not null,
     last_name  varchar(30) not null,
     birthday   date,
@@ -33,7 +33,7 @@ create table if not exists Students
 (
     id              int,
     group_id        int,
-    student_id_card serial,
+    student_id_card int,
     have_contract   bool not null,
 
     primary key (id),
@@ -46,7 +46,7 @@ create table if not exists Students
 
 create table if not exists Subjects
 (
-    id        int,
+    id        int AUTO_INCREMENT,
     name      varchar(50) not null,
     lector_id int,
 
