@@ -56,7 +56,7 @@ create table Subjects
 );
 
 create table Marks
-(гр
+(
     student_id int,
     subject_id int,
     mark       char not null,
@@ -70,48 +70,39 @@ create table Marks
 
 create table RELOAD_JOBS_TAB
 (
-    ID                    NUMBER(20)                  not null
-        primary key,
-    START_DATE              DATE        default sysdate not null,
-    LAST_UPDATE_DATE               DATE       default sysdate not null,
-    STATUS                VARCHAR2(20) not null,
+    ID                    INTEGER(20)                  not null
+        primary key AUTO_INCREMENT,
+    START_DATE              DATE        default sysdate() not null,
+    LAST_UPDATE_DATE               DATE       default sysdate() not null,
+    STATUS                VARCHAR(20) not null,
     constraint STATUS_CH
         check (STATUS IN ('DONE', 'STARTED', 'WAITING', 'ERROR')),
-    TYPE                  VARCHAR2(5) not null,
+    TYPE                  VARCHAR(5) not null,
     constraint TYPE_CH
         check (TYPE IN ('DATE', 'ID')),
-    MESSAGE_ID            NUMBER(20)      not null
+    MESSAGE_ID            INTEGER(20)      not null
 );
 
 create table RELOAD_JOBS_DATE_TAB
 (
-    ID                    NUMBER(20)                  not null
-        primary key,
+    ID                    INTEGER(20)                 not null
+        primary key AUTO_INCREMENT,
     DATE_FROM              DATE         not null,
     DATE_TO              DATE         not null,
-    TRANSACTIONS_RELOAD_ID       NUMBER(20)          not null
+    TRANSACTIONS_RELOAD_ID       INTEGER(20)          not null
 );
 
 create table RELOAD_JOBS_ID_TAB
 (
-    ID                    NUMBER(20)                  not null
-        primary key,
-    REQUEST_ID              NUMBER(20)        not null,
-    TRANSACTIONS_RELOAD_ID       NUMBER(20)          not null
+    ID                    INTEGER(20)                  not null
+        primary key AUTO_INCREMENT,
+    REQUEST_ID              INTEGER(20)        not null,
+    TRANSACTIONS_RELOAD_ID       INTEGER(20)          not null
 );
 
 create table RELOAD_MESSAGE_TAB
 (
     ID                    VARCHAR(20)                  not null
         primary key,
-    RECEIVING_DATE               DATE        default sysdate not null,
+    RECEIVING_DATE               DATE        default sysdate() not null
 );
-
-create sequence TRANSACTIONS_RELOAD_JOBS_SEQ
-    maxvalue 999999999
-
-create sequence TRANSACTIONS_RELOAD_JOBS_DATE_SEQ
-    maxvalue 999999999
-
-create sequence TRANSACTIONS_RELOAD_JOBS_ID_SEQ
-    maxvalue 999999999
