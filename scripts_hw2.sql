@@ -1,14 +1,14 @@
-create table Groups
+create table if not exists `groups`
 (
-    id   serial,
+    id   int,
     name char(6) not null,
 
     primary key (id)
 );
 
-create table Persons
+create table if not exists Persons
 (
-    id         serial,
+    id         int,
     first_name varchar(30) not null,
     last_name  varchar(30) not null,
     birthday   date,
@@ -19,7 +19,7 @@ create table Persons
     unique (email)
 );
 
-create table Lectors
+create table if not exists Lectors
 (
     id              int,
     scientific_name varchar(30) not null,
@@ -29,7 +29,7 @@ create table Lectors
     foreign key (id) references Persons (id)
 );
 
-create table Students
+create table if not exists Students
 (
     id              int,
     group_id        int,
@@ -41,12 +41,12 @@ create table Students
     unique (student_id_card),
 
     foreign key (id) references Persons (id),
-    foreign key (group_id) references Groups (id)
+    foreign key (group_id) references `groups` (id)
 );
 
-create table Subjects
+create table if not exists Subjects
 (
-    id        serial,
+    id        int,
     name      varchar(50) not null,
     lector_id int,
 
@@ -55,7 +55,7 @@ create table Subjects
     foreign key (lector_id) references Lectors (id)
 );
 
-create table Marks
+create table if not exists Marks
 (
     student_id int,
     subject_id int,
@@ -68,12 +68,12 @@ create table Marks
     foreign key (subject_id) references Subjects (id)
 );
 
-create table RELOAD_JOBS_TAB
+create table if not exists RELOAD_JOBS_TAB
 (
     ID                    INTEGER(20)                  not null
         primary key AUTO_INCREMENT,
-    START_DATE              DATE        default sysdate() not null,
-    LAST_UPDATE_DATE               DATE       default sysdate() not null,
+    START_DATE              TIMESTAMP default now() not null,
+    LAST_UPDATE_DATE               TIMESTAMP       default now() not null,
     STATUS                VARCHAR(20) not null,
     constraint STATUS_CH
         check (STATUS IN ('DONE', 'STARTED', 'WAITING', 'ERROR')),
@@ -83,7 +83,7 @@ create table RELOAD_JOBS_TAB
     MESSAGE_ID            INTEGER(20)      not null
 );
 
-create table RELOAD_JOBS_DATE_TAB
+create table if not exists RELOAD_JOBS_DATE_TAB
 (
     ID                    INTEGER(20)                 not null
         primary key AUTO_INCREMENT,
@@ -92,7 +92,7 @@ create table RELOAD_JOBS_DATE_TAB
     TRANSACTIONS_RELOAD_ID       INTEGER(20)          not null
 );
 
-create table RELOAD_JOBS_ID_TAB
+create table if not exists RELOAD_JOBS_ID_TAB
 (
     ID                    INTEGER(20)                  not null
         primary key AUTO_INCREMENT,
@@ -100,9 +100,9 @@ create table RELOAD_JOBS_ID_TAB
     TRANSACTIONS_RELOAD_ID       INTEGER(20)          not null
 );
 
-create table RELOAD_MESSAGE_TAB
+create table if not exists RELOAD_MESSAGE_TAB
 (
     ID                    VARCHAR(20)                  not null
         primary key,
-    RECEIVING_DATE               DATE        default sysdate() not null
+    RECEIVING_DATE               TIMESTAMP        default now() not null
 );
